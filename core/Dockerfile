@@ -152,6 +152,7 @@ FROM "${DOCKER_HUB_PROXY}debian:bullseye-slim"
         ssdeep \
         libfuzzy2 \
         mariadb-client \
+        patch \
         rsync \
         # Python Requirements
         python3 \
@@ -228,6 +229,7 @@ EOF
 
     # Copy all our image specific files to appropriate locations
     COPY files/ /
+    RUN patch /var/www/MISP/app/Plugin/OidcAuth/Lib/Oidc.php /Oidc.php.patch
     ENTRYPOINT [ "/entrypoint.sh" ]
 
     # Change Workdirectory

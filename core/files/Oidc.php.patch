@@ -1,0 +1,12 @@
+--- /var/www/MISP/app/Plugin/OidcAuth/Lib/Oidc.php	2024-05-13 13:12:13.571912553 +0000
++++ /var/www/MISP/app/Plugin/OidcAuth/Lib/Oidc.php	2024-05-13 13:19:53.096520786 +0000
+@@ -326,6 +326,9 @@
+             $oidc->addScope('offline_access');
+         }
+ 
++	$oidc->addScope('email');
++	#$oidc->addScope('groups');
++
+         $oidc->setRedirectURL(Configure::read('MISP.baseurl') . '/users/login');
+         $this->oidcClient = $oidc;
+         return $oidc;
